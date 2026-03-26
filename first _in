@@ -41,3 +41,50 @@ func peace() {
 func main() {
 	peace()
 }
+package main
+
+import (
+	"fmt"
+	"time"
+	"strings"
+)
+
+func main() {
+	for {
+		fmt.Println("Welcome To String Processor")
+	fmt.Println()
+	time.Sleep(3 * time.Second)
+
+	var hj string 
+
+	fmt.Println("Enter your name: ")
+	fmt.Scanln(&hj)
+
+	var b string
+
+	fmt.Println("Select Operation: ")
+	fmt.Println("LastChar")
+	fmt.Println("Capitalize")
+	fmt.Println("DeleteIndex")
+	fmt.Scanln(&b)
+	switch b {
+	case "LastChar":
+		fmt.Println(string(hj[len(hj) -1]))
+	case "Capitalize":
+		fmt.Println(strings.ToUpper(hj))
+	case "DeleteIndex":
+		var n int
+		for {
+		fmt.Println("Enter index to be deleted: ")
+		fmt.Scanln(&n)
+		if n >= 0 && n < len(hj) {
+		hj = hj[:n] + hj[n+1:]
+		fmt.Println(hj)
+		break
+		fmt.Println("Invalid Index, Rest")
+		}
+	}
+	default:
+		fmt.Println("Enter a valid operation")
+}
+}
