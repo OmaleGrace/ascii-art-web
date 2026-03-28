@@ -13,7 +13,7 @@ func processText(text string) string {
 	for i := 0; i < len(words); i++ {
 		w := words[i]
 
-		// 1️⃣ Handle base conversions first
+		// Handle base conversions first
 		if w == "(hex)" && i > 0 {
 			val := words[i-1]
 			if dec, err := strconv.ParseInt(val, 16, 64); err == nil {
@@ -30,7 +30,7 @@ func processText(text string) string {
 			continue
 		}
 
-		// 2️⃣ Handle case transformations
+		// Handle case transformations
 		if strings.HasPrefix(w, "(") {
 			marker := w
 			for !strings.HasSuffix(marker, ")") && i+1 < len(words) {
@@ -61,7 +61,7 @@ func processText(text string) string {
 			continue
 		}
 
-		// 3️⃣ Regular words → append to result
+		// Regular words → append to result
 		result = append(result, w)
 	}
 
