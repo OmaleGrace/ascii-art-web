@@ -1,4 +1,4 @@
-FIRST.GO
+MAIN.GO
 
 
 package main
@@ -11,11 +11,12 @@ import (
 	"time"
 )
 
-func grace() {
+func peace() {
 	for {
 		fmt.Println("Welcome To String Processor")
 		fmt.Println()
 		time.Sleep(3 * time.Second)
+
 		reader := bufio.NewReader(os.Stdin)
 		fmt.Println()
 		fmt.Println("Enter your name: ")
@@ -38,20 +39,33 @@ func grace() {
 			fmt.Println(strings.ToUpper(input))
 
 		case "3":
-			var num int
-			for {
-				fmt.Println("Enter index: ")
-				fmt.Scan(&num)
+			fmt.Println("Enter indices to delete (space separated, e.g. 2 3): ")
+
+			reader := bufio.NewReader(os.Stdin)
+			line, _ := reader.ReadString('\n')
+			line = strings.TrimSpace(line)
+
+			parts := strings.Fields(line)
+
+			// convert to integers
+			var indices []int
+			for _, p := range parts {
+				var num int
+				fmt.Sscanf(p, "%d", &num)
 
 				if num >= 0 && num < len(input) {
-					input = input[:num] + input[num+1:]
-					fmt.Println(input)
-					break
+					indices = append(indices, num)
 				} else {
-					fmt.Println("Invalid Index restarting .....")
-					continue
+					fmt.Println("Invalid index:", num)
 				}
 			}
+
+			// delete from right to left (VERY IMPORTANT)
+			for i := len(indices) - 1; i >= 0; i-- {
+				idx := indices[i]
+				input = input[:idx] + input[idx+1:]
+			}
+			fmt.Println("Result:", input)
 		default:
 			fmt.Println("invalid operation")
 		}
@@ -59,5 +73,5 @@ func grace() {
 }
 
 func main() {
-	grace()
+	peace()
 }

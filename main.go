@@ -1,74 +1,76 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"os"
 	"strings"
-	"time"
 )
 
-func peace() {
-	for {
-		fmt.Println("Welcome To String Processor")
-		fmt.Println()
-		time.Sleep(3 * time.Second)
-
-		reader := bufio.NewReader(os.Stdin)
-		fmt.Println()
-		fmt.Println("Enter your name: ")
-		input, _ := reader.ReadString('\n')
-		input = strings.TrimSpace(input)
-		var operation string
-		fmt.Println("Enter operation: ")
-		fmt.Println("1. lastChar")
-		fmt.Println("2. capitalize")
-		fmt.Println("3. deleteIndex")
-		fmt.Scanln(&operation)
-		switch operation {
-		case "1":
-			for i := 0; i < len(input); i++ {
-				if input[i] != ' ' && (i == len(input)-1 || input[i+1] == ' ') {
-					fmt.Print(string(input[i]), " ")
-				}
-			}
-		case "2":
-			fmt.Println(strings.ToUpper(input))
-
-		case "3":
-			fmt.Println("Enter indices to delete (space separated, e.g. 2 3): ")
-
-			reader := bufio.NewReader(os.Stdin)
-			line, _ := reader.ReadString('\n')
-			line = strings.TrimSpace(line)
-
-			parts := strings.Fields(line)
-
-			// convert to integers
-			var indices []int
-			for _, p := range parts {
-				var num int
-				fmt.Sscanf(p, "%d", &num)
-
-				if num >= 0 && num < len(input) {
-					indices = append(indices, num)
-				} else {
-					fmt.Println("Invalid index:", num)
-				}
-			}
-
-			// delete from right to left (VERY IMPORTANT)
-			for i := len(indices) - 1; i >= 0; i-- {
-				idx := indices[i]
-				input = input[:idx] + input[idx+1:]
-			}
-			fmt.Println("Result:", input)
-		default:
-			fmt.Println("invalid operation")
-		}
+// READ THE BANNER FILE
+func readBanner(filename string) ([]string, error) {
+	content, err := os.ReadFile(filename)
+	if err != nil {
+		return nil, err
 	}
+	lines := strings.Split(string(content), "\n")
+	return lines, nil
 }
 
-func main() {
-	peace()
+
+// GET A CHARTACTERS ART & LINE
+func getLines(bannerLines []string, ch rune) []string {
+	start := (int(ch) - 32) * 9
+	return bannerLines[start+1 : start+9]
 }
+
+
+//PRINT ASCII ART
+func printArt(lines []string, bannerLines []string) {
+
+for _, line := range lines {
+	if line == "" {
+		fmt.Println()
+		continue
+	}
+for i := 0; i <= 7; i++ {
+	for _, ch := range line {
+		charArt := getLines(bannerLines, ch)
+		fmt.Print(charArt[i])
+	}
+	fmt.Println()
+}
+}
+}
+func main() {
+	if len(os.Args) != 2 {        
+		fmt.Println("usage: go run . [string]")
+		return
+	}
+	input := os.Args[1]
+	//output := os.Args[2]
+
+	lines := strings.Split(input, "\\n")
+
+	//.art := fmt.Sprintf("banner/%v.txt", output)
+
+
+	
+	bannerLines, err := readBanner("banner/standard.txt")
+	if err != nil {
+		fmt.Println("Error reading file: ", err)
+		return
+	}
+	if input == ""  {
+		return
+	}
+	if input == "\\n" {
+		fmt.Println()
+		return
+	}
+	printArt(lines, bannerLines)
+
+_ = bannerLines
+_ = lines 	
+
+}
+
