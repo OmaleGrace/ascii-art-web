@@ -15,3 +15,16 @@ func RenderLine(text string, tit map[rune][]string) []string {
 	}
 	return result
 }
+
+package main
+
+func RenderLine(text string, banner map[rune][]string) []string {
+	word := make([]string, 8)
+	for i := 0; i <= 7; i++ {
+		for _, r := range text {
+			word[i] += banner[r][i]
+		}
+	}
+	return word
+}
+
