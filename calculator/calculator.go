@@ -1,20 +1,14 @@
-CALCULATOR.GO
-
-
 package main
 
 import (
 	"fmt"
 	"time"
-	"bufio"
-	"os"
 )
 
 func main() {
 	fmt.Println("**Welcome To OMAHLAY calculative World!**")
 	fmt.Println()
 	time.Sleep(3 * time.Second)
-	scan := bufio.NewScanner(os.Stdin)
 	for {
 		fmt.Println()
 		var operation string

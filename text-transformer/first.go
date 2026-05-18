@@ -1,6 +1,3 @@
-MAIN.GO
-
-
 package main
 
 import (
@@ -8,15 +5,12 @@ import (
 	"fmt"
 	"os"
 	"strings"
-	"time"
 )
 
 func peace() {
 	for {
-		fmt.Println("Welcome To String Processor")
 		fmt.Println()
-		time.Sleep(3 * time.Second)
-
+		fmt.Println("Welcome To String Processor")
 		reader := bufio.NewReader(os.Stdin)
 		fmt.Println()
 		fmt.Println("Enter your name: ")
@@ -47,7 +41,6 @@ func peace() {
 
 			parts := strings.Fields(line)
 
-			// convert to integers
 			var indices []int
 			for _, p := range parts {
 				var num int
@@ -60,7 +53,6 @@ func peace() {
 				}
 			}
 
-			// delete from right to left (VERY IMPORTANT)
 			for i := len(indices) - 1; i >= 0; i-- {
 				idx := indices[i]
 				input = input[:idx] + input[idx+1:]
