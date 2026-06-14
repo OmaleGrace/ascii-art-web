@@ -1,4 +1,4 @@
-package ascii 
+package ascii
 
 import (
 	"errors"
@@ -17,7 +17,7 @@ func LoadBanner(fielname string) (map[rune][]string, error) {
 	rn := rune(32)
 	for i := 0; i < len(alt); i += 9 {
 		if i+8 < len(alt) {
-			mp[rn] = alt[rn+1 : rn+9]
+			mp[rn] = alt[i+1 : i+9]
 			rn++
 		}
 		if rn > 126 {

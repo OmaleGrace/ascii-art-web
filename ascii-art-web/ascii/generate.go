@@ -11,7 +11,7 @@ func GenerateArt(s string, ban map[rune][]string) string {
 
 	for _, l := range s {
 		if l < 32 || l > 126 {
-			return ""
+			return  "Error: invalid Character"
 		}
 	}
 
@@ -24,12 +24,13 @@ func GenerateArt(s string, ban map[rune][]string) string {
 
 	var result strings.Builder
 	for _, l := range g {
-		if l != "" {
+		if l == "" {
 			result.WriteString("\n")
 		} else {
 			a := RenderLine(l, ban)
 			for _, at := range a {
-				result.WriteString(at + "\n")
+				result.WriteString(at)
+				result.WriteString("\n")
 			}
 		}
 	}

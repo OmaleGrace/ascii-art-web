@@ -1,6 +1,6 @@
 package ascii
 
-import(
+import (
 	"strings"
 )
 
