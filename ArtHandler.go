@@ -2,8 +2,9 @@ package main
 
 import (
 	"html/template"
-	"learn/ascii"
 	"net/http"
+
+	"github.com/omalegrace2009-g/ascii-art-web/ascii"
 )
 
 func HandleArt(w http.ResponseWriter, r *http.Request) {
@@ -19,7 +20,7 @@ func HandleArt(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	lban := "banners/" + banner + ".txt"
+	lban := "banner/" + banner + ".txt"
 	ban, err := ascii.LoadBanner(lban)
 	if err != nil {
 		http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
@@ -29,7 +30,7 @@ func HandleArt(w http.ResponseWriter, r *http.Request) {
 	genArt := ascii.GenerateArt(text, ban)
 	data := PageData{
 		Result: genArt,
-		Text: text,
+		Text:   text,
 	}
 
 	templ, err := template.ParseFiles(
