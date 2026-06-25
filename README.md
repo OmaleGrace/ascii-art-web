@@ -1,4 +1,4 @@
-# ASCII-Art-Web
+# ASCII Art Web application built with Go and HTML templates. Supports multiple banner styles, input validation, and dynamic style switching.
 
 ## Description
 
