@@ -7,7 +7,7 @@ import (
 
 func HandlePage(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
-		http.Error(w, "400 Bad Request", http.StatusBadRequest)
+		http.Error(w, "405 Invalid Method", http.StatusMethodNotAllowed)
 		return
 	}
 

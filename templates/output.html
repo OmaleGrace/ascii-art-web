@@ -1,0 +1,11 @@
+{{define "content"}}
+{{if .Result}}
+<h2>GENERATED ASCII ART</h2>
+<pre>{{.Result}}</pre>
+<a href="/ascii-art-switch?text={{.Text}}&banner=standard" class="active">standard</a>
+<a href="/ascii-art-switch?text={{.Text}}&banner=shadow" class="active">shadow</a>
+<a href="/ascii-art-switch?text={{.Text}}&banner=thinkertoy" class="active">thinkertoy</a>
+<br><br>
+<a href="/">BACK TO HOME</a>
+{{end}}
+{{end}}

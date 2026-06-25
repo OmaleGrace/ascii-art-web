@@ -1,37 +1,16 @@
 {{define "content"}}
 <h1>ASCII ART GENERATOR</h1>
-
 <form action="/ascii-art" method="post">
-    <textarea id="text" name="text" placeholder="Enter text">{{.Text}}</textarea>
-    <br>
+    <textarea id="text" name="text" placeholder="Enter text"></textarea>
+<br><br>
+    <label for="banner">Choose Banner Format:</label>
 
-    <label for="banner">Choose banner format:</label>
     <select name="banner" id="banner">
         <option value="standard">standard</option>
         <option value="shadow">shadow</option>
         <option value="thinkertoy">thinkertoy</option>
-    </select>
-
-    <br><br>
-
-    <button type="submit">Submit</button>
+    </select> 
+<br><br>
+    <button type="submit">submit</button>
 </form>
-
-{{if .Result}}
-
-<h2>Generated ASCII Art</h2>
-
-<pre>{{.Result}}</pre>
-
-<form action="/ascii-art" method="post">
-    <input type="hidden" name="text" value="{{.Text}}">
-
-    <input type="submit" name="banner" value="standard"></input>
-
-    <input type="submit" name="banner" value="shadow"></input>
-
-    <input type="submit" name="banner" value="thinkertoy"></input>
-</form>
-{{end}}
-
 {{end}}
