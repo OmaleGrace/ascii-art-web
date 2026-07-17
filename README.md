@@ -63,7 +63,7 @@ ascii-art-web/
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/omalegrace2009-g/ascii-art-web.git
+git clone https://github.com/OmaleGrace/ascii-art-web
 cd ascii-art-web
 ```
 
